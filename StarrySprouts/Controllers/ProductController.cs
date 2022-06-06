@@ -27,7 +27,18 @@ namespace StarrySprouts.Controllers
             return View(productListViewModel);
         }
 
+        public IActionResult Details(int id)
+        {
+            var product = _productRepository.GetProductById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
         
+
 
     }
 }

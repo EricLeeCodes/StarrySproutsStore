@@ -1,21 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StarrySprouts.Models;
+using StarrySprouts.ViewModels;
 using System.Diagnostics;
 
 namespace StarrySprouts.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+      
+        private readonly IProductRepository _productRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProductRepository productRepository)
         {
-            _logger = logger;
+            _productRepository = productRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var homeViewModel = new HomeViewModel
+            {
+                ProductsOnSale = _productRepository.GetProductsOnSale
+            };
+
+            return View(homeViewModel);
         }
 
         public IActionResult Privacy()

@@ -1,27 +1,15 @@
-﻿namespace StarrySprouts.Models
+﻿using StarrySprouts.Data;
+
+namespace StarrySprouts.Models
 {
     public class CategoryRepository : ICategoryRepository
     {
-        public IEnumerable<CategoryModel> GetAllCategories => new List<CategoryModel>()
+        private readonly AppDbContext _appDbContext;
+        public CategoryRepository(AppDbContext appDbContext)
         {
-            new CategoryModel
-            {
-                CategoryId = 1,
-                CategoryName = "Stickers",
-                CategoryDescription = "Beautiful Fantasy Stickers"
-            },
-            new CategoryModel
-            {
-                CategoryId = 2,
-                CategoryName = "Plushy",
-                CategoryDescription = "Adorable Snuggly Plushies"
-            },
-            new CategoryModel
-            {
-                CategoryId = 3,
-                CategoryName = "Clothing",
-                CategoryDescription = "Stylish and Comfortable Clothing"
-            }
-        };
+            _appDbContext = appDbContext;
+        }
+
+        public IEnumerable<CategoryModel> GetAllCategories => _appDbContext.Categories;
     }
 }

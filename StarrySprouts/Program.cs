@@ -1,9 +1,11 @@
+using Microsoft.EntityFrameworkCore;
 using StarrySprouts.Data;
 using StarrySprouts.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 
 
 // Add services to the container.
