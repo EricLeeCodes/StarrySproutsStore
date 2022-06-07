@@ -56,7 +56,32 @@ namespace StarrySprouts.Models
 
         }
 
+        public int RemoveFromCart(ProductModel product)
+        {
+            //Retrieve item if we had it
+            var shoppingCartItem = _appDbContext.ShoppingCartItems.SingleOrDefault(
+                s => s.Product.ProductId == product.ProductId && ShoppingCartId == ShoppingCartId);
 
+            var localAmount = 0;
+
+            if (shoppingCartItem != null)
+            {
+                if (shoppingCartItem.Amount > 1)
+                {
+                    shoppingCartItem.Amount--;
+                    localAmount = shoppingCartItem.Amount;
+                }
+                else
+                {
+                    _appDbContext.ShoppingCartItems.Remove(shoppingCartItem);
+                }
+            }
+
+            _appDbContext.SaveChanges();
+
+            return localAmount;
+
+        }
 
         
     }
