@@ -12,6 +12,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ShoppingCartModel>(sc => ShoppingCartModel.GetCart(sc));
+
+//Configuration for Sessions to be used from Non-Controller class
+builder.Services.AddHttpContextAccessor();
+//Configuration for Sessions to be used from the Controller
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -25,6 +31,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+//Session before routing because we want to set session before user moves from one page to another.
+//Configuration for Sessions to be used from the Controller
+app.UseSession();
+
 
 app.UseRouting();
 
