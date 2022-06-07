@@ -99,6 +99,14 @@ namespace StarrySprouts.Models
             _appDbContext.ShoppingCartItems.RemoveRange(cartItems);
             _appDbContext.SaveChanges();
         }
+
+        public decimal GetShoppingCartTotal()
+        {
+            var total = _appDbContext.ShoppingCartItems.Where(p => p.ShoppingCartId == ShoppingCartId)
+                .Select(p => p.Product.Price * p.Amount).Sum();
+
+            return total;
+        }
         
     }
 }
