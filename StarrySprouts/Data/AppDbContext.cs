@@ -10,6 +10,7 @@ namespace StarrySprouts.Data
         //Which DbSet to manage
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }
+        public DbSet<ShoppingCartItemsModel> ShoppingCartItems { get; set; }
 
         //Seeding the data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -90,7 +91,7 @@ namespace StarrySprouts.Data
                 IsOnSale = false
             });
 
-
+           
 
 
         }
