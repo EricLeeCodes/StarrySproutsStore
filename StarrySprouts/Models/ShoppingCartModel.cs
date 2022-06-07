@@ -57,6 +57,7 @@ namespace StarrySprouts.Models
 
         }
 
+        //Returns integer because it deals with the amount of items in the cart.
         public int RemoveFromCart(ProductModel product)
         {
             //Retrieve item if we had it
@@ -91,6 +92,13 @@ namespace StarrySprouts.Models
                 .Include(s => s.Product).ToList());
         }
 
+        public void ClearCart()
+        {
+            var cartItems = _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId);
+
+            _appDbContext.ShoppingCartItems.RemoveRange(cartItems);
+            _appDbContext.SaveChanges();
+        }
         
     }
 }
