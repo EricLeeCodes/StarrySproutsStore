@@ -1,4 +1,5 @@
-﻿using StarrySprouts.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using StarrySprouts.Data;
 
 namespace StarrySprouts.Models
 {
@@ -6,7 +7,7 @@ namespace StarrySprouts.Models
     {
         private readonly AppDbContext _appDbContext;
         public string ShoppingCartId { get; set; }
-        public List<ShoppingCartItemsModel> MyProperty { get; set; }
+        public List<ShoppingCartItemsModel> ShoppingCartItems { get; set; }
 
         public ShoppingCartModel(AppDbContext appDbContext)
         {
@@ -81,6 +82,13 @@ namespace StarrySprouts.Models
 
             return localAmount;
 
+        }
+
+        public List<ShoppingCartItemsModel> GetAllShoppingCartItems()
+        {
+            return ShoppingCartItems ?? (ShoppingCartItems = _appDbContext.ShoppingCartItems
+                .Where(p => p.ShoppingCartId == ShoppingCartId)
+                .Include(s => s.Product).ToList());
         }
 
         
