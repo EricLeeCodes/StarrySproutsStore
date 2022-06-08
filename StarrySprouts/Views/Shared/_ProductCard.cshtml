@@ -1,11 +1,20 @@
 ﻿@model ProductModel
 
 <div class="col-md-4 card-deck">
-    <div class="card shadow mb-4">
+    <div class="card shadow mb-4 text-center">
         <img src="@Model.ImageThumbnailUrl" alt="Image of the product" class="card-img-top">
         <div class="card-body">
             <h3> CA @Model.Price.ToString("C")</h3>
             <h3 class="card-title"><a asp-controller="Product" asp-action="Details" asp-route-id="@Model.ProductId">@Model.Name</a></h3>
         </div>
+        <div class="add-to-cart">
+        <p class="button">
+            <a class="btn btn-primary"
+                asp-controller="ShoppingCart"
+                asp-action="AddToShoppingCart"
+                asp-route-productId="@Model.ProductId"> Add to Cart
+            </a>
+        </p>
+    </div>
     </div>
 </div>
