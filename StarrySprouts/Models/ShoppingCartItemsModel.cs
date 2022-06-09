@@ -8,7 +8,6 @@ namespace StarrySprouts.Models
         public int ShoppingCartItemId { get; set; }
 
         [Required]
-        [MaxLength(3000)]
         public string ShoppingCartId { get; set; }
         [Required]
         public ProductModel Product { get; set; }

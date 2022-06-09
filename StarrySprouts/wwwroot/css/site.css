@@ -99,3 +99,16 @@ footer {
     width: 100px;
     height: 100px;
 }
+
+.min-vh-90 {
+    min-height: 90vh !important;
+}
+
+.overflow-auto {
+    overflow: auto;
+}
+
+a {
+    text-decoration: none !important;
+    color: black;
+}

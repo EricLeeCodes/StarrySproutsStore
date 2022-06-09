@@ -38,7 +38,5 @@ namespace StarrySprouts.Controllers
             return View(product);
         }
         
-
-
     }
 }
