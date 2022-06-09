@@ -13,6 +13,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ShoppingCartModel>(sc => ShoppingCartModel.GetCart(sc));
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
 
 //Configuration for Sessions to be used from Non-Controller class
 builder.Services.AddHttpContextAccessor();

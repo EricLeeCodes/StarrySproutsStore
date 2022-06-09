@@ -11,6 +11,8 @@ namespace StarrySprouts.Data
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<ShoppingCartItemsModel> ShoppingCartItems { get; set; }
+        public DbSet<OrderModel> Orders { get; set; }
+        public DbSet<OrderDetailsModel> OrderDetails { get; set; }
 
         //Seeding the data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
