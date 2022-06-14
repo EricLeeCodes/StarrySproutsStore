@@ -30,16 +30,18 @@
                     </ul>
 
                     @await Component.InvokeAsync("ShoppingCartSummary")
+                    <partial name="_LoginPartial"></partial>
                 </div>
             </div>
         </nav>
     </header>
-    <main role="main" class="d-flex flex-column w-100  align-items-center overflow-auto min-vh-90">
+    <main role="main" class="d-flex flex-column w-100 align-items-center overflow-auto min-vh-90">
         <div class="container">      
                 @RenderBody()
         </div>
     </main>
-    <footer class="container-fluid p-4 shadow-no-hover">
+    
+    <footer class="container p-4 shadow-no-hover">
         <div class="ps-3 p-2 text-center">
             &copy; 2022 - StarrySprouts 
             - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

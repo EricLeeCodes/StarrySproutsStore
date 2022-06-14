@@ -11,17 +11,17 @@ namespace StarrySprouts.Models
 
         [Required(ErrorMessage = "Please enter your first name")]
         [Display(Name = "First Name")]
-        [StringLength(25)]
+        [MaxLength(25)]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Please enter your last name")]
         [Display(Name = "Last Name")]
-        [StringLength(50)]
+        [MaxLength(50)]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Please enter your address")]
         [Display(Name = "Street Address")]
-        [StringLength(100)]
+        [MaxLength(100)]
         public string Address { get; set; }
 
         [Required(ErrorMessage = "Please enter your city")]
@@ -41,8 +41,8 @@ namespace StarrySprouts.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
-        //Need a list of what the person ordered
-        public List<OrderDetailsModel> OrderDetails { get; set; }
+        
+        public List<OrderDetailsModel> OrderDetails { get; set; } = new List<OrderDetailsModel>();
 
         [BindNever]
         [ScaffoldColumn(false)]
@@ -52,6 +52,6 @@ namespace StarrySprouts.Models
         [ScaffoldColumn(false)]
         public DateTime OrderPlaced { get; set; }
 
-
+        
     }
 }

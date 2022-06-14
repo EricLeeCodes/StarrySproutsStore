@@ -1,8 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using StarrySprouts.Data;
 using StarrySprouts.Models;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString));;
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<AppDbContext>();;
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
@@ -20,6 +28,8 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddHttpContextAccessor();
 //Configuration for Sessions to be used from the Controller
 builder.Services.AddSession();
+
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -40,11 +50,18 @@ app.UseSession();
 
 
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+});
 
 app.Run();

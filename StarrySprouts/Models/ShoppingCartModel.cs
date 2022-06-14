@@ -35,6 +35,7 @@ namespace StarrySprouts.Models
             var shoppingCartItem = _appDbContext.ShoppingCartItems.SingleOrDefault(
                 s => s.Product.ProductId == product.ProductId && s.ShoppingCartId == ShoppingCartId);
 
+
             //Creating new item if it was null
             if (shoppingCartItem == null)
             {
@@ -108,6 +109,6 @@ namespace StarrySprouts.Models
             return total;
         }
 
-        
+
     }
 }
