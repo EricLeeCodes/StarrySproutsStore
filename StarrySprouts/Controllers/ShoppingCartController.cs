@@ -56,5 +56,12 @@ namespace StarrySprouts.Controllers
             return RedirectToAction("Index");
         }
 
+        public RedirectToActionResult ClearShoppingCart()
+        {
+            _shoppingCart.ClearCart();
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
