@@ -1,5 +1,8 @@
 <h1>Mock e-commerce website!</h1>
 
+https://starrysproutsstore.azurewebsites.net
+Deployed using Azure.
+
 <h2>Walk Through</h2>
 
 This project was created using Asp.NET Core MVC(Model-View-Controller).
